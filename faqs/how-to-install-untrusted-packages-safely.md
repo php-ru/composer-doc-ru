@@ -17,3 +17,6 @@ The `exec` command will always run third party code as the user which runs `comp
 
 In some cases, like in CI systems or such where you want to install untrusted dependencies, the
 safest way to do it is to run the above command.
+
+<!-- ready: no -->
+<!-- revision: 486e580db294b5fe2e8ef887efacb7f2500268c9 -->

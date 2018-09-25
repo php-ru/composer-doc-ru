@@ -48,3 +48,6 @@ composer/installers determined location.
 > **Note:** You cannot use this to change the path of any package. This is only
 > applicable to packages that require `composer/installers` and use a custom type
 > that it handles.
+
+<!-- ready: no -->
+<!-- revision: 6ae8e340c1b0e49b007ad7255dfb9f8babe1b242 -->

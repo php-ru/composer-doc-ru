@@ -921,3 +921,6 @@ Then `composer show -s` will give you `versions : * dev-latest-testing`.
 Optional.
 
 &larr; [Command-line interface](03-cli.md)  |  [Repositories](05-repositories.md) &rarr;
+
+<!-- ready: no -->
+<!-- revision: 9de9c2b1143fdc6f3cd892ad6506f6e8cf5efed2 -->

@@ -53,3 +53,6 @@ Request: install A
 * priority(Av1.repo) <  priority(Bv2.repo) => (Bv2, Av1)
 
 Bv2 version is ignored, only the replacement version for A matters.
+
+<!-- ready: no -->
+<!-- revision: d6620195e593602a42b3de0c6e4f2d7ddaf19bea -->

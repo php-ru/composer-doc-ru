@@ -65,7 +65,7 @@ php composer.phar init
   to a `composer` repository or a JSON string which similar to what the
   [repositories](04-schema.md#repositories) key accepts.
 
-## install
+## install / i
 
 The `install` command reads the `composer.json` file from the current
 directory, resolves the dependencies, and installs them into `vendor`.
@@ -115,7 +115,7 @@ resolution.
   requirements and force the installation even if the local machine does not
   fulfill these. See also the [`platform`](06-config.md#platform) config option.
 
-## update
+## update / u
 
 In order to get the latest versions of the dependencies and to update the
 `composer.lock` file, you should use the `update` command. This command is also
@@ -929,3 +929,6 @@ Defaults to `1`. If set to `0`, Composer will not create `.htaccess` files in th
 composer home, cache, and data directories.
 
 &larr; [Libraries](02-libraries.md)  |  [Schema](04-schema.md) &rarr;
+
+<!-- ready: no -->
+<!-- revision: 2f347e134721b3b6ee825fca273ca056e5cedbd3 -->

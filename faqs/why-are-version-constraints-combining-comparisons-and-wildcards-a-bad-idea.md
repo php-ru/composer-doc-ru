@@ -19,3 +19,5 @@ of a package in version 3.0.0 or not. Should it match because you asked for
 For this reason, Composer throws an error and says that this is invalid.
 The easy way to fix it is to think about what you really mean, and use only
 one of those rules.
+<!-- ready: no -->
+<!-- revision: 8f65518ed30b0ec0a13356e056aafd1e359a05e2 -->

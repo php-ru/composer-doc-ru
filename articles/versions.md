@@ -228,3 +228,6 @@ You can test version constraints using [semver.mwl.be](https://semver.mwl.be).
 Fill in a package name and it will autofill the default version constraint
 which Composer would add to your `composer.json` file. You can adjust the
 version constraint and the tool will highlight all releases that match.
+
+<!-- ready: no -->
+<!-- revision: 8f65518ed30b0ec0a13356e056aafd1e359a05e2 -->

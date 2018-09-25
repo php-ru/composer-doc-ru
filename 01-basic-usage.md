@@ -154,8 +154,10 @@ and running `install` again.)
 ```sh
 php composer.phar update
 ```
+
 > **Note:** Composer will display a Warning when executing an `install` command
-> if `composer.lock` and `composer.json` are not synchronized.
+> if the `composer.lock` has not been updated since changes were made to the
+> `composer.json` that might affect dependency resolution.
 
 If you only want to install or update one dependency, you can whitelist them:
 
@@ -188,11 +190,11 @@ installed on the system but are not actually installable by Composer. This
 includes PHP itself, PHP extensions and some system libraries.
 
 * `php` represents the PHP version of the user, allowing you to apply
-  constraints, e.g. `>=5.4.0`. To require a 64bit version of php, you can
+  constraints, e.g. `^7.1`. To require a 64bit version of php, you can
   require the `php-64bit` package.
 
 * `hhvm` represents the version of the HHVM runtime and allows you to apply
-  a constraint, e.g., `>=2.3.3`.
+  a constraint, e.g., `^2.3`.
 
 * `ext-<name>` allows you to require PHP extensions (includes core
   extensions). Versioning can be quite inconsistent here, so it's often
@@ -262,3 +264,6 @@ See also the docs on [optimizing the autoloader](articles/autoloader-optimizatio
 > associative arrays allowing you to configure your own autoloader.
 
 &larr; [Intro](00-intro.md)  |  [Libraries](02-libraries.md) &rarr;
+
+<!-- ready: no -->
+<!-- revision: 10f707e3169dafebb345a03e75c9e66c2a57335b -->

@@ -283,3 +283,6 @@ local project plugins are loaded.
 [8]: https://github.com/composer/composer/blob/master/src/Composer/Plugin/Capable.php
 [9]: https://github.com/composer/composer/blob/master/src/Composer/Plugin/Capability/CommandProvider.php
 [10]: https://symfony.com/doc/current/components/console.html
+
+<!-- ready: no -->
+<!-- revision: 486e580db294b5fe2e8ef887efacb7f2500268c9 -->

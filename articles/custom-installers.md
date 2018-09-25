@@ -202,3 +202,6 @@ different installation path.
 [3]: https://github.com/composer/composer/blob/master/src/Composer/Plugin/PluginInterface.php
 [4]: https://github.com/composer/composer/blob/master/src/Composer/Installer/InstallerInterface.php
 [5]: https://github.com/composer/composer/blob/master/src/Composer/Installer/LibraryInstaller.php
+
+<!-- ready: no -->
+<!-- revision: 4b11bbccef83e7a188ff599bb531239ec86faaa4 -->

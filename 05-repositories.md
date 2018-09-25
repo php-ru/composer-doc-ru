@@ -59,7 +59,7 @@ The main repository type is the `composer` repository. It uses a single
 This is also the repository type that packagist uses. To reference a
 `composer` repository, supply the path before the `packages.json` file.
 In the case of packagist, that file is located at `/packages.json`, so the URL of
-the repository would be `packagist.org`. For `example.org/packages.json` the
+the repository would be `repo.packagist.org`. For `example.org/packages.json` the
 repository URL would be `example.org`.
 
 #### packages
@@ -305,12 +305,10 @@ After creating an OAuth consumer in the BitBucket control panel, you need to set
 the credentials like this (more info [here](https://getcomposer.org/doc/06-config.md#bitbucket-oauth)):
 ```json
 {
-    "config": {
-        "bitbucket-oauth": {
-            "bitbucket.org": {
-                "consumer-key": "myKey",
-                "consumer-secret": "mySecret"
-            }
+    "bitbucket-oauth": {
+        "bitbucket.org": {
+            "consumer-key": "myKey",
+            "consumer-secret": "mySecret"
         }
     }
 }
@@ -713,3 +711,6 @@ composer config -g repo.packagist false
 ```
 
 &larr; [Schema](04-schema.md)  |  [Config](06-config.md) &rarr;
+
+<!-- ready: no -->
+<!-- revision: c5fa3bdde0e042b64e32102c21edb2e12e474746 -->

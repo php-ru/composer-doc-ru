@@ -108,3 +108,6 @@ all of the vendor binaries being installed in `scripts/` instead of
 `vendor/bin/`.
 
 You can set `bin-dir` to `./` to put binaries in your project root.
+
+<!-- ready: no -->
+<!-- revision: a34f88cb018488e5b10501692a2babd3e61564d8 -->

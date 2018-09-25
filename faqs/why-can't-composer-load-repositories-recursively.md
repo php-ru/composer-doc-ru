@@ -33,3 +33,6 @@ same problems as the second solution, because loading the repositories of the
 dependencies is not as easy as it sounds. You need to load all the repos of all
 the potential matches for a requirement, which again might have conflicting
 package definitions.
+
+<!-- ready: no -->
+<!-- revision:  -->

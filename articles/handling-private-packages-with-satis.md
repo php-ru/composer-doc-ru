@@ -341,3 +341,6 @@ is set to true.
 [Twig]: https://twig.sensiolabs.org/
 [config schema]: https://getcomposer.org/doc/04-schema.md#config
 [notify-batch]: https://getcomposer.org/doc/05-repositories.md#notify-batch
+
+<!-- ready: no -->
+<!-- revision: 8f65518ed30b0ec0a13356e056aafd1e359a05e2 -->

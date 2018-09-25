@@ -307,3 +307,6 @@ Composer can unpack zipballs using either a system-provided `unzip` utility or P
 native `ZipArchive` class. The `ZipArchive` class is preferred on Windows. On other
 OSes where ZIP files can contain permissions and symlinks, the `unzip` utility is
 preferred. You're advised to install it if you need these features.
+
+<!-- ready: no -->
+<!-- revision: a652039cc2829df02b6fb06c6e6e0e6c63164c8c -->

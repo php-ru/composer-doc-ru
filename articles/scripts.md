@@ -291,3 +291,6 @@ You can set custom script descriptions with the following in your `composer.json
 ```
 
 > **Note:** You can only set custom descriptions of custom commands.
+
+<!-- ready: no -->
+<!-- revision: b1bfb9bb65641d35434209c2c60169a92e99d1e3 -->

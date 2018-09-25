@@ -103,3 +103,6 @@ and alias it to `1.0.x-dev`.
 > **Note:** Inline aliasing should be avoided, especially for published
 > packages/libraries. If you found a bug, try and get your fix merged upstream.
 > This helps to avoid issues for users of your package.
+
+<!-- ready: no -->
+<!-- revision: ea78712822e2efecf177cdd01f5c001587b47e8e -->

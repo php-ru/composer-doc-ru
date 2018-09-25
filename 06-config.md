@@ -275,3 +275,6 @@ Defaults to `true`. If set to `false`, Composer will not create `.htaccess` file
 in the composer home, cache, and data directories.
 
 &larr; [Repositories](05-repositories.md)  |  [Community](07-community.md) &rarr;
+
+<!-- ready: no -->
+<!-- revision: 635d96b5e50753d5da62e5566332d9c107bddc5b -->

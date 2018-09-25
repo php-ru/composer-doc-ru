@@ -19,3 +19,6 @@ works very well with libraries following [semantic versioning](https://semver.or
 **Note:** As a package maintainer, you can make the life of your users easier
 by providing an [alias version](../articles/aliases.md) for your development
 branch to allow it to match bound constraints.
+
+<!-- ready: no -->
+<!-- revision: 58a62dceab4d85653334a43bf589d8965883245a -->

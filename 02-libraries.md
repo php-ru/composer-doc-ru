@@ -151,3 +151,6 @@ will start crawling it. Once it is done, your package will be available to
 anyone!
 
 &larr; [Basic usage](01-basic-usage.md) |  [Command-line interface](03-cli.md) &rarr;
+
+<!-- ready: no -->
+<!-- revision: d835983b15f030ef9e699f8ece470840fac92f52 -->

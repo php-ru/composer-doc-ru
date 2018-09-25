@@ -33,3 +33,6 @@ Stack Overflow has a growing collection of
 [Composer related questions](https://stackoverflow.com/questions/tagged/composer-php).
 
 &larr; [Config](06-config.md)
+
+<!-- ready: no -->
+<!-- revision: 149a5e9401f4afcdc9d0b190a318d8668373ee6c -->

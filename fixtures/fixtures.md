@@ -20,3 +20,6 @@ All these repositories contain the following packages.
 * `bar/baz` has a 1.0.0 version and 1.0.x-dev as well as dev-default branches.
    Additionally, 1.1.x-dev is a branch alias for dev-default.
 
+
+<!-- ready: no -->
+<!-- revision: 486e580db294b5fe2e8ef887efacb7f2500268c9 -->

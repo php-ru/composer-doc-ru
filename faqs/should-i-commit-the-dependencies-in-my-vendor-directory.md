@@ -30,3 +30,6 @@ If you really feel like you must do this, you have a few options:
 4. Add a .gitignore rule (`/vendor/**/.git`) to ignore all the vendor `.git` folders.
    This approach does not require that you delete dependencies from disk prior to
    running a composer update.
+
+<!-- ready: no -->
+<!-- revision: cc3a8379e228530e963b7d2d3ae89df6a649656f -->

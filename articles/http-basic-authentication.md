@@ -57,3 +57,6 @@ The main advantage of the auth.json file is that it can be gitignored so
 that every developer in your team can place their own credentials in there,
 which makes revocation of credentials much easier than if you all share the
 same.
+
+<!-- ready: no -->
+<!-- revision: 2e99b9fdf589f9caf84a745d1ea4f055b2661ca5 -->
