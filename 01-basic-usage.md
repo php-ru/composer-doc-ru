@@ -1,25 +1,25 @@
-# Basic usage
+# Основы использования
 
-## Introduction
+## Подготовка
 
-For our basic usage introduction, we will be installing `monolog/monolog`,
-a logging library. If you have not yet installed Composer, refer to the
-[Intro](00-intro.md) chapter.
+В качестве примера для демонстрации основ использования Composer, мы будем
+устанавливать библиотеку логирования `monolog/monolog`. Если вы еще не
+установили Composer, обратитесь к главе «[Введение](00-intro.md)».
 
-> **Note:** for the sake of simplicity, this introduction will assume you
-> have performed a [local](00-intro.md#locally) install of Composer.
+> **Примечание:** для простоты эта вводная часть предполагает, что у вас
+>  установлен [локально](00-intro.md#locally) Composer.
 
-## `composer.json`: Project Setup
+## `composer.json`: настройка проекта
 
-To start using Composer in your project, all you need is a `composer.json`
-file. This file describes the dependencies of your project and may contain
-other metadata as well.
+Для того, чтобы начать использовать Composer в вашем проекте, нужен только файл
+`composer.json`. В этом файле определяются все зависимости проекта, кроме этого
+он также может содержать другие метаданные.
 
-### The `require` Key
+### Ключ `require`
 
-The first (and often only) thing you specify in `composer.json` is the
-[`require`](04-schema.md#require) key. You are simply telling Composer which
-packages your project depends on.
+Первое (и часто единственное), что обычно указывается в файле `composer.json`, —
+это поле [`require`](04-schema.md#require). Таким образом вы указываете
+Composer, от каких пакетов зависит ваш проект.
 
 ```json
 {
@@ -29,190 +29,215 @@ packages your project depends on.
 }
 ```
 
-As you can see, [`require`](04-schema.md#require) takes an object that maps
-**package names** (e.g. `monolog/monolog`) to **version constraints** (e.g.
-`1.0.*`).
+Как вы можете видеть, [`require`](04-schema.md#require) принимает объект,
+который сопоставляет **названия пакетов** (например, `monolog/monolog`) с
+указанием **ограничений версии** (например, `1.0.*`).
 
-Composer uses this information to search for the right set of files in package
-"repositories" that you register using the [`repositories`](04-schema.md#repositories)
-key, or in Packagist, the default package repository. In the above example,
-since no other repository has been registered in the `composer.json` file, it is
-assumed that the `monolog/monolog` package is registered on Packagist. (See more
-about Packagist [below](#packagist), or read more about repositories
-[here](05-repositories.md)).
+Composer использует эту информацию для поиска требуемого набора файлов (т.е.
+зависимостей) в «репозиториях» указанных пакетов, которые вы регистрируете,
+используя поле [`repositories`](04-schema.md#repositories), либо ищет их в
+репозитории пакетов по умолчанию Packagist. В приведенном выше примере,
+поскольку в файле `composer.json` не зарегистрировано никакого другого
+репозитория, предполагается, что пакет `monolog/monolog` зарегистрирован в
+Packagist. (Смотрите подробнее о Packagist ниже, либо узнайте больше о
+репозиториях [здесь](05-repositories.md)).
 
-### Package Names
+### Названия пакетов
 
-The package name consists of a vendor name and the project's name. Often these
-will be identical - the vendor name only exists to prevent naming clashes. For
-example, it would allow two different people to create a library named `json`.
-One might be named `igorw/json` while the other might be `seldaek/json`.
+Название пакета состоит из имени разработчика (vendor) и собственно имени
+проекта. Зачастую они будут совпадать — имя разработчика нужно только для
+предотвращения коллизий названий пакетов. К примеру, данная возможность позволит
+двум разным людям создать библиотеку с названием `json`: один определит пакет с
+названием `igorw/json`, в то время как другой может создать пакет, имя которого
+`seldaek/json`.
 
-Read more about publishing packages and package naming [here](02-libraries.md).
-(Note that you can also specify "platform packages" as dependencies, allowing
-you to require certain versions of server software. See
-[platform packages](#platform-packages) below.)
+Подробнее про публикацию и именования пакетов читайте [здесь](02-libraries.md).
+(Обратите внимание, что вы также можете указать «пакеты платформы» в качестве
+зависимостей, что позволяет вам требовать определенные версии серверного
+программного обеспечения. Смотрите [пакеты платформы](#platform-packages) далее
+в этой главе.)
 
-### Package Version Constraints
+### Ограничения версии пакета
 
-In our example, we are requesting the Monolog package with the version constraint
-[`1.0.*`](https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*).
-This means any version in the `1.0` development branch, or any version that is
-greater than or equal to 1.0 and less than 1.1 (`>=1.0 <1.1`).
+В нашем примере мы запрашиваем пакет Monolog с ограничением версии
+[`1.0.*`](https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*). Это
+означает любую версию в ветке разработки `1.0` или любую версию, которая больше
+или равна 1.0 и меньше 1.1 (`>=1.0 <1.1`.
 
-Please read [versions](articles/versions.md) for more in-depth information on
-versions, how versions relate to each other, and on version constraints.
+Прочитайте [версии](articles/versions.md) для получения более подробной
+информации про версии, о том, как эти версии связаны друг с другом, и о
+ограничениях версии.
 
-> **How does Composer download the right files?** When you specify a dependency in
-> `composer.json`, Composer first takes the name of the package that you have requested
-> and searches for it in any repositories that you have registered using the
-> [`repositories`](04-schema.md#repositories) key. If you have not registered
-> any extra repositories, or it does not find a package with that name in the
-> repositories you have specified, it falls back to Packagist (more [below](#packagist)).
+> **Как Composer загружает нужные файлы?** Когда вы указываете зависимость в
+> `composer.json`, Composer сначала возьмёт имя запрашиваемого пакета и ищет его
+> в любых репозиториях, которые вы зарегистрировали, используя поле
+> [`repositories`](04-schema.md#repositories). Если вы не зарегистрировали
+> никаких дополнительных репозиториев, либо пакет пакет с данным именем не
+> найден в указанных репозиториях, Composer возвратится к поиске пакета на
+> Packagist (подробнее см. [ниже](#packagist)).
 >
-> When Composer finds the right package, either in Packagist or in a repo you have specified,
-> it then uses the versioning features of the package's VCS (i.e., branches and tags)
-> to attempt to find the best match for the version constraint you have specified. Be sure to read
-> about versions and package resolution in the [versions article](articles/versions.md).
-
-> **Note:** If you are trying to require a package but Composer throws an error
-> regarding package stability, the version you have specified may not meet your
-> default minimum stability requirements. By default only stable releases are taken
-> into consideration when searching for valid package versions in your VCS.
+> Когда Composer находит нужный пакет, либо в Packagist, либо в указанном
+> репозитории, далее он использует возможности системы управления версиями (VCS)
+> пакета (т.е. ветки и теги) для того, чтобы попытаться найти наилучшее
+> соответствие для заданного ограничения версии. Обязательно прочитайте о
+> версиях и разрешении пакетов в [статье про версии](articles/versions.md).
 >
-> You might run into this if you are trying to require dev, alpha, beta, or RC
-> versions of a package. Read more about stability flags and the `minimum-stability`
-> key on the [schema page](04-schema.md).
+> **Примечание:**. При попытке запросить пакет, в том время когда Composer
+> выдает ошибку относительно стабильности пакета, указанная вами версия может не
+> соответствовать минимальным требованиям стабильности по умолчанию. По
+> умолчанию учитываются только стабильные релизы при поиске корректных версий
+> пакетов в VCS.
+>
+> Вы можете столкнуться с данной ошибкой, если пытаетесь загрузить версию dev,
+> alpha, beta или RC пакета. Подробнее о флагах стабильности и поле
+> `minimum-stability` смотрите на [странице схемы](04-schema.md).
 
-## Installing Dependencies
+## Установка зависимостей
 
-To install the defined dependencies for your project, run the
-[`install`](03-cli.md#install) command.
+Для установки определённых зависимостей для вашего проекта, выполните команду
+[`install`](03-cli.md#install).
 
 ```sh
 php composer.phar install
 ```
 
-When you run this command, one of two things may happen:
+Когда вы выполните данную команду, произойдёт одно из двух:
 
-### Installing Without `composer.lock`
+### Установка без `composer.lock`
 
-If you have never run the command before and there is also no `composer.lock` file present,
-Composer simply resolves all dependencies listed in your `composer.json` file and downloads
-the latest version of their files into the `vendor` directory in your project. (The `vendor`
-directory is the conventional location for all third-party code in a project). In our
-example from above, you would end up with the Monolog source files in
-`vendor/monolog/monolog/`. If Monolog listed any dependencies, those would also be in
-folders under `vendor/`.
+Если вы никогда не запускали команду ранее, и кроме этого отсутствует файл
+`composer.lock`, Composer просто разрешит все зависимости, перечисленные в файле
+`composer.json`, и загрузит последние версии этих файлов в директорию `vendor`
+проекта. (Каталог  `vendor` — общепринятое место для расположения всех сторонних
+кодовых баз в проекте). В нашем примере выше вы получите исходные файлы Monolog
+по пути `vendor/monolog/monolog/`. Если пакет Monolog сам зависит от других
+пакетов, то они также будут находиться в собственных директориях в `vendor/`.
 
-> **Tip:** If you are using git for your project, you probably want to add
-> `vendor` in your `.gitignore`. You really don't want to add all of that
-> third-party code to your versioned repository.
+> **Совет:**. Если вы используете git в своём проекте, вы, вероятно, захотите
+> добавить директорию `vendor` в файл `.gitignore`. Ведь в реальности вы не
+> хотите добавлять весь сторонний код пакетов в ваш репозиторий, отслеживаемый
+> CVS.
 
-When Composer has finished installing, it writes all of the packages and the exact versions
-of them that it downloaded to the `composer.lock` file, locking the project to those specific
-versions. You should commit the `composer.lock` file to your project repo so that all people
-working on the project are locked to the same versions of dependencies (more below).
+Когда Composer завершает установку, он записывает все загруженные пакеты вместе
+с их полными версиями в файл `composer.lock`, блокируя проект на использование
+этих конкретных версий. Вам следует закоммитить файл `composer.lock` в
+репозитории проекта, чтобы все, кто будет впоследствии работать над проектом,
+использовали одни и те же версии зависимостей (подробнее смотрите ниже).
 
-### Installing With `composer.lock`
+---
 
-This brings us to the second scenario. If there is already a `composer.lock` file as well as a
-`composer.json` file when you run `composer install`, it means either you ran the
-`install` command before, or someone else on the project ran the `install` command and
-committed the `composer.lock` file to the project (which is good).
+### Установка с помощью `composer.lock`
 
-Either way, running `install` when a `composer.lock` file is present resolves and installs
-all dependencies that you listed in `composer.json`, but Composer uses the exact versions listed
-in `composer.lock` to ensure that the package versions are consistent for everyone
-working on your project. As a result you will have all dependencies requested by your
-`composer.json` file, but they may not all be at the very latest available versions
-(some of the dependencies listed in the `composer.lock` file may have released newer versions since
-the file was created). This is by design, it ensures that your project does not break because of
-unexpected changes in dependencies.
+Это приводит нас ко второму сценарию. Если у вас уже есть файл `composer.lock`,
+а также файл `composer.json` при запуске Composer, то это означает, что вы либо
+запускали команду установки ранее, либо кто-то еще в проекте выполнял эту
+команду и закоммитил в репозитории проекта файл `composer.lock` (что хорошо).
 
-### Commit Your `composer.lock` File to Version Control
+В любом случае, при выполении команды `install` при существовании файла
+`composer.lock`, Composer разрешает и устанавливает все зависимости,
+перечисленные в файле `composer.json`, однако в таком случае Composer использует
+точные версии, перечисленные в файле `composer.lock` для обеспечения гарантии,
+что версии пакетов будут одинаковые для всех, кто работает над проектом. В
+результате у вас будут все зависимости, запрошенные вами через файл
+`composer.json`, однако, учитывайте, что они могут быть на данный момент
+неактуальные (из-за того, что некоторые из зависимостей, перечисленных в файле
+`composer.lock`, возможно, уже имеют более новые версии с момента создания или
+обновления этого файла). Это сделано намеренно, поскольку гарантирует, что ваш
+проект не сломается из-за неожиданных изменений в последних версиях
+зависимостей.
 
-Committing this file to VC is important because it will cause anyone who sets
-up the project to use the exact same
-versions of the dependencies that you are using. Your CI server, production
-machines, other developers in your team, everything and everyone runs on the
-same dependencies, which mitigates the potential for bugs affecting only some
-parts of the deployments. Even if you develop alone, in six months when
-reinstalling the project you can feel confident the dependencies installed are
-still working even if your dependencies released many new versions since then.
-(See note below about using the `update` command.)
+Закоммитьте файл `composer.lock` в системе контроля версиями
 
-## Updating Dependencies to their Latest Versions
+Перенос данного файла в VC важен, потому что это приведет к тому, что любой, кто
+настроит у себя локально проект, будет использовать в точности те же самые
+версии зависимостей, которые используете вы. Ваш сервер CI, продакшен-серверы,
+другие разработчики в вашей команде, всё и все работают, используя одни и те же
+зависимости, что уменьшает вероятность ошибок, затрагивающих только определенные
+части процесса деплоя. Даже если вы разрабатываете в одиночку, через полгода при
+переустановке проекта вы можете быть уверены, что установленные зависимости все
+еще работают, даже если с тех пор были выпущены новые версии для используемых
+зависимостей. (Смотрите примечание ниже по использованию команды обновления
+(`update`))
 
-As mentioned above, the `composer.lock` file prevents you from automatically getting
-the latest versions of your dependencies. To update to the latest versions, use the
-[`update`](03-cli.md#update) command. This will fetch the latest matching
-versions (according to your `composer.json` file) and update the lock file
-with the new versions. (This is equivalent to deleting the `composer.lock` file
-and running `install` again.)
+## Обновление зависимостей до последних версий
+
+Как упоминалось выше, файл `composer.lock` не позволяет автоматически получать
+последние версии зависимостей проекта. Для обновления их до последних версий,
+используйте команду [`update`](03-cli.md#update). Это позволит получить
+последние соответствующие версии (т.е. указанные в файле `composer.json`), а
+также обновить файл блокировки новыми версиями. (Данное действие эквивалентно
+удалению файла `composer.lock` и повторному запуску команды `install`.)
 
 ```sh
 php composer.phar update
 ```
 
-> **Note:** Composer will display a Warning when executing an `install` command
-> if the `composer.lock` has not been updated since changes were made to the
-> `composer.json` that might affect dependency resolution.
+> **Примечание:** Composer отобразит предупреждение при выполнении команды
+> `install` , если файл `composer.lock` не был обновлен, поскольку были внесены
+> изменения в `composer.json`, которые могут повлиять на разрешение
+> зависимостей.
 
-If you only want to install or update one dependency, you can whitelist them:
+Если вы хотите установить или обновить только одну зависимость, вы можете
+сделать это следующим образом:
 
 ```sh
 php composer.phar update monolog/monolog [...]
 ```
 
-> **Note:** For libraries it is not necessary to commit the lock
-> file, see also: [Libraries - Lock file](02-libraries.md#lock-file).
+> **Примечание:**. Для библиотек нет необходимости фиксировать в системе
+> контроля версий файл блокировки, смотрите по этой теме: [Библиотеки — Файл
+> блокировки](02-libraries.md#lock-file).
 
 ## Packagist
 
-[Packagist](https://packagist.org/) is the main Composer repository. A Composer
-repository is basically a package source: a place where you can get packages
-from. Packagist aims to be the central repository that everybody uses. This
-means that you can automatically `require` any package that is available there,
-without further specifying where Composer should look for the package.
+Packagist — основной репозиторий Composer. Репозиторий Composer — это, как
+правило, источник пакета, т.е. то место, где можно получить пакеты. Packagist
+стремится стать центральным хранилищем, который будут все использовать. В данном
+случае это означает, что вы можете автоматически запросить (установить через
+`require`) любой пакет, доступный в этом хранилище, без дополнительного
+указания, где Composer должен искать пакет.
 
-If you go to the [Packagist website](https://packagist.org/) (packagist.org),
-you can browse and search for packages.
+Если вы перейдете на [сайт Packagist](https://packagist.org/), вы можете
+посмотреть и поискать какие-нибудь пакеты.
 
-Any open source project using Composer is recommended to publish their packages
-on Packagist. A library does not need to be on Packagist to be used by Composer,
-but it enables discovery and adoption by other developers more quickly.
+Любому проекту с открытым исходным кодом, использующему Composer, рекомендуется
+опубликовать свой пакет в хранилище пакетов Packagist. Библиотеке не обязательно
+нужно находится в Packagist для использования через Composer, но размещение в
+этом хранилище позволит другим разработчикам намного быстрее найти и начать
+использовать её.
 
-## Platform packages
+## Пакеты платформы
 
-Composer has platform packages, which are virtual packages for things that are
-installed on the system but are not actually installable by Composer. This
-includes PHP itself, PHP extensions and some system libraries.
+Composer поддерживает пакеты платформы, которые на самом деле являются
+виртуальными пакетами для всего того, что установлено в системе, но в реальности
+не устанавливаются с помощью Composer. Сюда входят непосредственно сам PHP, его
+расширения и некоторые системные библиотеки.
 
-* `php` represents the PHP version of the user, allowing you to apply
-  constraints, e.g. `^7.1`. To require a 64bit version of php, you can
-  require the `php-64bit` package.
+* `php` представляет PHP-версию пользователя, что позволяет применять
+  ограничения на использование пакета, например, `^7.1`. Чтобы потребовать
+  64-битную версию PHP, вам может потребоваться пакет `php-64bit`.
 
-* `hhvm` represents the version of the HHVM runtime and allows you to apply
-  a constraint, e.g., `^2.3`.
+* `hhvm` представляет версию среды выполнения HHVM и позволяет применить
+  ограничение, например, `^2.3`.
 
-* `ext-<name>` allows you to require PHP extensions (includes core
-  extensions). Versioning can be quite inconsistent here, so it's often
-  a good idea to set the constraint to `*`.  An example of an extension
-  package name is `ext-gd`.
+* `ext-<name>` позволяет вам запрашивать PHP-расширения (включая расширения
+  ядра). В данном случае версионирование могут быть совершенно несовместимо,
+  поэтому часто рекомендуется установить ограничение на значение `*`. Примером
+  имени пакета расширения является `ext-gd`.
 
-* `lib-<name>` allows constraints to be made on versions of libraries used by
-  PHP. The following are available: `curl`, `iconv`, `icu`, `libxml`,
-  `openssl`, `pcre`, `uuid`, `xsl`.
+* `lib-<name>` позволяет накладывать ограничения на используемые версии
+  библиотек, используемых PHP. Доступны следующие библиотеки: `curl`, `iconv`,
+  `icu`, `libxml`, `openssl`, `pcre`, `uuid` и `xsl`.
 
-You can use [`show --platform`](03-cli.md#show) to get a list of your locally
-available platform packages.
+Вы можете использовать [`show --platform`](03-cli.md#show) для получения списка
+доступных локально пакетов платформы.
 
-## Autoloading
+## Автозагрузка
 
-For libraries that specify autoload information, Composer generates a
-`vendor/autoload.php` file. You can simply include this file and start
-using the classes that those libraries provide without any extra work:
+Для библиотек, указывающую информацию для автозагрузки, Composer создает файл
+`vendor/autoload.php`. Вы можете просто включить этот файл и начать использовать
+классы, предоставляющие библиотеками-зависимостями без каких-либо дополнительных
+усилий:
 
 ```php
 require __DIR__ . '/vendor/autoload.php';
@@ -222,8 +247,8 @@ $log->pushHandler(new Monolog\Handler\StreamHandler('app.log', Monolog\Logger::W
 $log->addWarning('Foo');
 ```
 
-You can even add your own code to the autoloader by adding an
-[`autoload`](04-schema.md#autoload) field to `composer.json`.
+Вы даже можете добавить собственный код в автозагрузчик, добавив поле
+[`autoload`](04-schema.md#autoload) в файл `composer.json`.
 
 ```json
 {
@@ -233,37 +258,49 @@ You can even add your own code to the autoloader by adding an
 }
 ```
 
-Composer will register a [PSR-4](http://www.php-fig.org/psr/psr-4/) autoloader
-for the `Acme` namespace.
 
-You define a mapping from namespaces to directories. The `src` directory would
-be in your project root, on the same level as `vendor` directory is. An example
-filename would be `src/Foo.php` containing an `Acme\Foo` class.
+Composer зарегистрирует совместимый с [PSR-4](http://www.php-fig.org/psr/psr-4/)
+автозагрузчик для пространства имен `Acme`.
 
-After adding the [`autoload`](04-schema.md#autoload) field, you have to re-run
-[`dump-autoload`](03-cli.md#dump-autoload) to re-generate the
-`vendor/autoload.php` file.
+В данном поле вы определяете соответствие пространства имени к директории,
+содержащий классы с данным пространством имени. Директория `src` будет в вашем
+корневой директории проекта на том же уровне, что и каталог `vendor`. В качестве
+примера можно привести файл `src/Foo.php`, для которого полное имя класс должно
+быть `Acme\Foo`.
 
-Including that file will also return the autoloader instance, so you can store
-the return value of the include call in a variable and add more namespaces.
-This can be useful for autoloading classes in a test suite, for example.
+После добавления поля [`autoload`](04-schema.md#autoload) вам необходимо
+повторно запустить команду `dump-autoload` для повторного создания файла
+`vendor/autoload.php`.
+
+В том числе этот файл также вернет экземпляр автозагрузчика, поэтому вы можете
+сохранить возвращаемое значение входящего вызова в переменной и добавить еще
+пространство имен. Это может быть полезно, например, для автозагрузки классов в
+тестовом наборе.
+
+Включение этого файла также вернет экземпляр автозагрузчика, поэтому вы можете
+сохранить возвращаемое значение вызова `include` в переменной и добавить
+дополнительные пространства имен. Это может быть полезно, например, для
+автозагрузки классов в наборе тестов.
 
 ```php
 $loader = require __DIR__ . '/vendor/autoload.php';
 $loader->addPsr4('Acme\\Test\\', __DIR__);
 ```
 
-In addition to PSR-4 autoloading, Composer also supports PSR-0, classmap and
-files autoloading. See the [`autoload`](04-schema.md#autoload) reference for
-more information.
+В дополнение к автозагрузке PSR-4, Composer также поддерживает автозагрузку
+PSR-0, карту классов (classmap) и автозагрузку файлов. Для получения
+дополнительной информации смотрите описание поля
+[`autoload`](04-schema.md#autoload).
 
-See also the docs on [optimizing the autoloader](articles/autoloader-optimization.md).
+Смотрите также статью по [оптимизации
+автозагрузчика](articles/autoloader-optimization.md).
 
-> **Note:** Composer provides its own autoloader. If you don't want to use that
-> one, you can include `vendor/composer/autoload_*.php` files, which return
-> associative arrays allowing you to configure your own autoloader.
+> **Примечание:** Composer предоставляет собственный автозагрузчик. Если вы не
+> хотите использовать его, вы можете включить файлы
+> `vendor/composer/autoload_*.php`, которые возвращают ассоциативные массивы,
+> позволяющие вам настроить свой автозагрузчик.
 
-&larr; [Intro](00-intro.md)  |  [Libraries](02-libraries.md) &rarr;
+&larr; [Введение](00-intro.md)  |  [Библиотеки](02-libraries.md) &rarr;
 
-<!-- ready: no -->
+<!-- ready: yes -->
 <!-- revision: 10f707e3169dafebb345a03e75c9e66c2a57335b -->
