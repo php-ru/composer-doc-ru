@@ -1,17 +1,19 @@
-# Libraries
+# Библиотеки
 
-This chapter will tell you how to make your library installable through
+В этой главе рассказывается, как сделать вашу библиотеку доступной через
 Composer.
 
-## Every project is a package
+## Каждый проект — проект
 
-As soon as you have a `composer.json` in a directory, that directory is a
-package. When you add a [`require`](04-schema.md#require) to a project, you are
-making a package that depends on other packages. The only difference between
-your project and a library is that your project is a package without a name.
+Как только у вас появляется файл `composer.json` в директории, она становится
+пакетом. Когда вы добавляете зависимость к проекту через команду
+[`require`](04-schema.md#require), вы делаете зависимым свой пакет от других
+пакетов. Единственная разинца между вашим проектом и библиотекой заключается в
+том, что ваш проект представляет собой пакет без имени.
 
-In order to make that package installable you need to give it a name. You do
-this by adding the [`name`](04-schema.md#name) property in `composer.json`:
+Для того, чтобы сделать этот пакет доступным к установке для других, вам нужно
+дать ему имя. Вы можете сделать это, добавив свойство
+[`name`](04-schema.md#name) в файл `composer.json`:
 
 ```json
 {
@@ -22,25 +24,26 @@ this by adding the [`name`](04-schema.md#name) property in `composer.json`:
 }
 ```
 
-In this case the project name is `acme/hello-world`, where `acme` is the vendor
-name. Supplying a vendor name is mandatory.
+В данном случае имя проекта — `acme/hello-world`, где `acme` — имя разработчика.
+Указание имени разработчика обязательно.
 
-> **Note:** If you don't know what to use as a vendor name, your GitHub
-> username is usually a good bet. While package names are case insensitive, the
-> convention is all lowercase and dashes for word separation.
+> **Примечание:** Если вы не знаете, что использовать в качестве имени
+> разработчика, ваше имя пользователя на GitHub обычно является правильным
+> решением. Хотя имена пакетов нечувствительны к регистру, принято соглашение,
+> что все имена пишутся строчными буквами с использованием тире в качестве
+> разделения слов.
 
-## Library Versioning
+## Версионирование библиотеки
 
-In the vast majority of cases, you will be maintaining your library using some
-sort of version control system like git, svn, hg or fossil. In these cases,
-Composer infers versions from your VCS and you **should not** specify a version
-in your `composer.json` file. (See the [Versions article](articles/versions.md)
-to learn about how Composer uses VCS branches and tags to resolve version
-constraints.)
+В подавляющем большинстве случаев вы будете поддерживать свою библиотеку,
+используя определенную систему контроля версий, например, git, svn, hg или
+fossil. В таких случаях Composer подразумевает версии из вашего VCS, и поэтому
+вам **не нужно** указывать версию в файле `composer.json`. (Читайте [статью
+«Версии»](articles/versions.md), чтобы узнать, как Composer использует ветки и
+теги VCS для разрешения ограничений версий.)
 
-If you are maintaining packages by hand (i.e., without a VCS), you'll need to
-specify the version explicitly by adding a `version` value in your `composer.json`
-file:
+Если вы поддерживаете пакеты вручную (т.е. не используете VCS), вам нужно будет
+указать версию явно, добавив поле `version` в файл `composer.json`:
 
 ```json
 {
@@ -48,42 +51,43 @@ file:
 }
 ```
 
-> **Note:** When you add a hardcoded version to a VCS, the version will conflict
-> with tag names. Composer will not be able to determine the version number.
+> **Примечание:** Когда вы жёстко задаёте версию в VCS, эта версия будет
+> конфликтовать с именами тегов. Composer не сможет определить номер версии.
 
-### VCS Versioning
 
-Composer uses your VCS's branch and tag features to resolve the version
-constraints you specify in your `require` field to specific sets of files.
-When determining valid available versions, Composer looks at all of your tags
-and branches and translates their names into an internal list of options that
-it then matches against the version constraint you provided.
+### Версионирование через VCS
 
-For more on how Composer treats tags and branches and how it resolves package
-version constraints, read the [versions](articles/versions.md) article.
+Composer использует ветку и теги VCS для определения ограничений версии, которые
+вы указываете в поле `require`. При определении корректных доступных версий,
+Composer просматривает все ваши теги и ветки и переводит их имена во внутренний
+список опций, которые затем сопоставляются с указанным вами ограничением версии.
 
-## Lock file
+Подробнее о том, как Composer обрабатывает теги и ветки, и то, как он разрешает
+ограничения версии пакета, читайте [эту статью](articles/versions.md).
 
-For your library you may commit the `composer.lock` file if you want to. This
-can help your team to always test against the same dependency versions.
-However, this lock file will not have any effect on other projects that depend
-on it. It only has an effect on the main project.
+## Файл блокировки
 
-If you do not want to commit the lock file and you are using git, add it to
-the `.gitignore`.
+Если хотите для вашей библиотеки вы можете зафиксировать в репозитории файл
+`composer.lock`. Это может помочь вашей команде всегда использовать одни и те же
+версии зависимостей. Однако этот файл блокировки не будет влиять на другие
+проекты, которые зависят от него. Он влияет только на основной проект.
 
-## Publishing to a VCS
+Если вы не хотите фиксировать в VCS файл блокировки, используя git, то добавьте
+его в файл `.gitignore`.
 
-Once you have a VCS repository (version control system, e.g. git) containing a
-`composer.json` file, your library is already composer-installable. In this
-example we will publish the `acme/hello-world` library on GitHub under
+## Публикация в VCS
+
+После того, как у вас есть репозиторий VCS (version control system — система
+контроля версиями, к примеру, git), содержащий файл `composer.json`, ваша
+библиотека готова для установки через Composer. В этом примере мы опубликуем
+библиотеку `acme/hello-world` на GitHub по адресу
 `github.com/username/hello-world`.
 
-Now, to test installing the `acme/hello-world` package, we create a new
-project locally. We will call it `acme/blog`. This blog will depend on
-`acme/hello-world`, which in turn depends on `monolog/monolog`. We can
-accomplish this by creating a new `blog` directory somewhere, containing a
-`composer.json`:
+Теперь, чтобы проверить установку пакета `acme/hello-world`, мы создадим новый
+проект локально. Назовём его `acme/blog`. Этот блог будет зависеть от
+`acme/hello-world`, который, в свою очередь, зависит от `monolog/monolog`. Для
+того, чтобы всё это сделать, нужно создать где-нибудь новую директорию под
+названием `blog`, содержащий файл `composer.json`:
 
 ```json
 {
@@ -94,12 +98,16 @@ accomplish this by creating a new `blog` directory somewhere, containing a
 }
 ```
 
-The name is not needed in this case, since we don't want to publish the blog
-as a library. It is added here to clarify which `composer.json` is being
-described.
+В данном случае название не требуется, поскольку мы не хотим публиковать блог
+как библиотеку. Но поле `name` добавлено для пояснения, про какой именно файл
+`composer.json` идёт речь.
 
-Now we need to tell the blog app where to find the `hello-world` dependency.
-We do this by adding a package repository specification to the blog's
+Теперь нам нужно указать приложению блога, где можно найти зависимость
+`hello-world`. Это делается путем добавления определения репозитория пакета в
+файл `composer.json` блога:
+
+Now we need to tell the blog app where to find the `hello-world` dependency. We
+do this by adding a package repository specification to the blog's
 `composer.json`:
 
 ```json
@@ -117,40 +125,46 @@ We do this by adding a package repository specification to the blog's
 }
 ```
 
-For more details on how package repositories work and what other types are
-available, see [Repositories](05-repositories.md).
+Подробнее о том, как работают репозитории пакетов и какие ещё другие типы
+доступны, смотрите в разделе «[Репозитории](05-repositories.md)».
 
-That's all. You can now install the dependencies by running Composer's
-[`install`](03-cli.md#install) command!
+Вот и всё. Теперь вы можете установить зависимости, запустив Composer-команду
+[`install`](03-cli.md#install)!
 
-**Recap:** Any git/svn/hg/fossil repository containing a `composer.json` can be
-added to your project by specifying the package repository and declaring the
-dependency in the [`require`](04-schema.md#require) field.
+**Повторим:** Любой репозиторий (git/svn/hg/fossil), в котором есть файл
+`composer.json`, можно добавить в ваш проект, указав репозиторий пакета и
+объявив его как зависимость в поле [`require`](04-schema.md#require).
 
-## Publishing to packagist
+## Публикация в Packagist
 
-Alright, so now you can publish packages. But specifying the VCS repository
-every time is cumbersome. You don't want to force all your users to do that.
+Отлично, теперь вы можете публиковать пакеты. Но указывать каждый раз
+репозиторий VCS довольно обременительно. Вряд ли вы хотите принуждать всех своих
+пользователей делать это.
 
-The other thing that you may have noticed is that we did not specify a package
-repository for `monolog/monolog`. How did that work? The answer is Packagist.
+Другое дело, что вы, скорее всего, заметили, что мы не указали репозиторий для
+пакета `monolog/monolog`. Откуда в таком случае данный пакет загружается? Ответ
+прост — Packagist.
 
-[Packagist](https://packagist.org/) is the main package repository for
-Composer, and it is enabled by default. Anything that is published on
-Packagist is available automatically through Composer. Since
-[Monolog is on Packagist](https://packagist.org/packages/monolog/monolog), we
-can depend on it without having to specify any additional repositories.
+[Packagist](https://packagist.org/) — основной репозиторий пакетов для Composer,
+который по умолчанию включен. Всё, что опубликовано в Packagist, доступно
+автоматически через Composer. Поскольку [Monolog находится в
+Packagist](https://packagist.org/packages/monolog/monolog), мы может
+использовать его как зависимость для проекта, не указывая никаких определений
+репозиториев (т.е. откуда его можно загрузить).
 
-If we wanted to share `hello-world` with the world, we would publish it on
-Packagist as well. Doing so is really easy.
+Если бы мы хотели поделиться со всем миром нашим пакетом `hello-world`, мы будем
+опубликуем его на Packagist, поскольку сделать это очень просто.
 
-You simply visit [Packagist](https://packagist.org) and hit the "Submit"
-button. This will prompt you to sign up if you haven't already, and then
-allows you to submit the URL to your VCS repository, at which point Packagist
-will start crawling it. Once it is done, your package will be available to
-anyone!
+Вы просто заходите на [Packagist](https://packagist.org) и нажимаете кнопку
+«Submit». После этого вас перенаправит на страницу входа в аккаунт, поэтому
+перед публикацией вам нужно зарегистрироваться, сделать это также можно через
+GitHub, после этого вы будете перенаправлены на страницу для публикации пакета,
+для чего нужно только указать URL-адрес репозитория пакета, и уже сделав это,
+Packagist начнет сканирование репозитория. Как только всё будет готово, ваш
+пакет будет доступен для всех!
 
-&larr; [Basic usage](01-basic-usage.md) |  [Command-line interface](03-cli.md) &rarr;
+&larr; [Основы использования](01-basic-usage.md) | [Интерфейс командной
+строки](03-cli.md) &rarr;
 
-<!-- ready: no -->
+<!-- ready: yes -->
 <!-- revision: d835983b15f030ef9e699f8ece470840fac92f52 -->
