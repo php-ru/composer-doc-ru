@@ -1,53 +1,33 @@
-# Repositories
+# Репозитории
 
-This chapter will explain the concept of packages and repositories, what kinds
-of repositories are available, and how they work.
+В этой главе объясняются концепция пакетов и репозиториев, какие типы хранилищ доступны и как они работают.
 
-## Concepts
+## Концепции
 
-Before we look at the different types of repositories that exist, we need to
-understand some of the basic concepts that Composer is built on.
+Прежде чем мы рассмотрим существующие типы репозиториев, нам нужно понять некоторые из основных концепций, на которых построен Composer.
 
-### Package
+### Пакет
 
-Composer is a dependency manager. It installs packages locally. A package is
-essentially a directory containing something. In this case it is PHP
-code, but in theory it could be anything. And it contains a package
-description which has a name and a version. The name and the version are used
-to identify the package.
+Composer - менеджер зависимостей. Он устанавливает пакеты локально. Пакет в сущности представляет директорию, содержащую что-либо. В даном случае это  PHP-код, но теоретически это может быть что угодно. И он содержит описание пакета, который имеет имя и версию. Название и версия используются для идентификации пакета.
 
-In fact, internally Composer sees every version as a separate package. While
-this distinction does not matter when you are using Composer, it's quite
-important when you want to change it.
+Фактически, изнутри Composer рассматривает каждую версию как отдельный пакет. Хотя это различие не имеет значение, оно тем не менее очень важно, когда вы хотите изменить пакет.
 
-In addition to the name and the version, there is useful metadata. The
-information most relevant for installation is the source definition, which
-describes where to get the package contents. The package data points to the
-contents of the package. And there are two options here: dist and source.
+В дополнение к названию и версии, существуют полезные метаданные. Для установки наиболее важной является определение источника, в котором описывается, где получить содержимое пакета. И для него доступны два варианта: dist и source.
 
-**Dist:** The dist is a packaged version of the package data. Usually a
-released version, usually a stable release.
+**Dist:** dist - упакованная версия данных пакета. Как правило, выпущенная версия, которая зачастую является стабильным релизом.
 
-**Source:** The source is used for development. This will usually originate
-from a source code repository, such as git. You can fetch this when you want
-to modify the downloaded package.
+**Source:** source используется для разработки. Обычно под этим подразумевается репозиторий с исходным кодом, таким как git. Вы можете получить его в случаях, когда хотите изменить загруженный пакет.
 
-Packages can supply either of these, or even both. Depending on certain
-factors, such as user-supplied options and stability of the package, one will
-be preferred.
+Пакеты могут распространятся через любой из вариантов, или даже через оба из них. В зависимости от определенных факторов, таких как параметры, предоставляемые пользователем и стабильность пакета, первый вариант предпочтительнее.
 
 ### Repository
 
-A repository is a package source. It's a list of packages/versions. Composer
-will look in all your repositories to find the packages your project requires.
+Репозиторий - источник пакета. Это список пакетов/версий. Composer
+будет просматривать все ваши репозиториях для того, чтобы найти требуемые вашему проекту пакеты.
 
-By default only the Packagist repository is registered in Composer. You can
-add more repositories to your project by declaring them in `composer.json`.
+По умолчанию в Composer зарегистрирован только репозиторий Packagist. Вы можете добавить больше репозиториев в свой проект, объявив их в файле `composer.json`. 
 
-Repositories are only available to the root package and the repositories
-defined in your dependencies will not be loaded. Read the
-[FAQ entry](faqs/why-can't-composer-load-repositories-recursively.md) if you
-want to learn why.
+Репозитории доступны только корневому пакету, поэтому репозитории, определенные в зависимостях, не будут загружены. Прочитайте [запись в разделе FAQ](faqs/why-can't-composer-load-repositories-recursively.md), если хотите узнать, почему так происходит.
 
 ## Types
 
